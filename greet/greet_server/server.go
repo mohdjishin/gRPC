@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"net"
@@ -30,4 +31,15 @@ func main() {
 		log.Fatalf("Failed to serve: %v", err)
 	}
 
+}
+
+func (s *server) Greet(ctx context.Context, req *greetpb.GreetRequest) (*greetpb.GreetResponse, error) {
+
+	firstname := req.GetGreeting().GetFirstName()
+	result := "Hello " + firstname
+	res := &greetpb.GreetResponse{
+		Result: result,
+	}
+
+	return res, nil
 }
