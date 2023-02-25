@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+
+package prime;
+
+option go_package = "./prime";
+
+
+
+
+message PrimeRequest {
+  int64 number = 1;
+}
+
+message PrimeResponse {
+  int64 prime = 1;
+}
+
+
+
+
+service PrimeService {
+  rpc Prime(PrimeRequest) returns (stream PrimeResponse) {}
+}
