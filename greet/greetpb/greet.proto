@@ -18,8 +18,19 @@ message GreetResponse {
 }
 
 
+message GreetManyTimesRequest {
+    Greeting greeting = 1;
+}
+message GreetManyTImesResponse {
+    string result = 1;
+}
+
+
 
 service GreetService{
     // Unary
     rpc Greet(GreetRequest) returns (GreetResponse) {};
+    // Server Streaming rpc
+    rpc GreetManyTimes(GreetManyTimesRequest) returns (stream GreetManyTImesResponse){};
+
 }

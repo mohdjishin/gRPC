@@ -5,8 +5,10 @@ package calc;
 option go_package="./calc";
 
 message Calculating {
+   
     int64 first_num = 1;
     int64 second_num = 2;
+    string operation = 3;
 }
 
 message CalculateRequest {
@@ -14,7 +16,7 @@ message CalculateRequest {
 }
 
 message CalculateResponse {
-    int64 result = 1;
+    string result = 1;
 }
 
 

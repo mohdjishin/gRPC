@@ -26,8 +26,9 @@ func main() {
 func Calculate(c calc.CalculateServiceClient) {
 	req := &calc.CalculateRequest{
 		Calculating: &calc.Calculating{
-			FirstNum:  10,
+			FirstNum:  100,
 			SecondNum: 20,
+			Operation: "div",
 		}}
 	res, err := c.Calculate(context.Background(), req)
 	if err != nil {
