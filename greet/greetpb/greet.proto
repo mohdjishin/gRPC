@@ -22,7 +22,7 @@ message GreetManyTimesRequest {
     Greeting greeting = 1;
 }
 message GreetManyTImesResponse {
-    string result = 1;
+    string result = 1; 
 }
 // clinet streaming
 
@@ -34,6 +34,15 @@ message LongGreetResponse {
     string result = 1;
 }
 
+message GreetEveryoneRequest{
+    Greeting greeting =1;
+
+}
+
+message GreetEveryoneResponse{
+    string result =1;
+}
+
 service GreetService{
     // Unary
     rpc Greet(GreetRequest) returns (GreetResponse) {};
@@ -41,4 +50,8 @@ service GreetService{
     rpc GreetManyTimes(GreetManyTimesRequest) returns (stream GreetManyTImesResponse){};
     // client streaming rpc
     rpc LongGreet(stream LongGreetRequest) returns (LongGreetResponse){};
+
+    // bi-directional stream
+    rpc GreateEveryone(stream GreetEveryoneRequest) returns (stream GreetEveryoneResponse){};
+
 }
