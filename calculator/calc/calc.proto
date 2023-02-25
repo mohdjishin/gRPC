@@ -1,0 +1,26 @@
+
+syntax = "proto3";
+
+package calc;
+option go_package="./calc";
+
+message Calculating {
+    int64 first_num = 1;
+    int64 second_num = 2;
+}
+
+message CalculateRequest {
+    Calculating calculating = 1;
+}
+
+message CalculateResponse {
+    int64 result = 1;
+}
+
+
+
+service CalculateService{
+    // Unary
+
+    rpc Calculate(CalculateRequest) returns (CalculateResponse) {};
+}
