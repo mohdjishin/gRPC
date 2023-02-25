@@ -16,7 +16,7 @@ message GreetRequest {
 message GreetResponse {
     string result = 1;
 }
-
+// server streaming
 
 message GreetManyTimesRequest {
     Greeting greeting = 1;
@@ -24,13 +24,21 @@ message GreetManyTimesRequest {
 message GreetManyTImesResponse {
     string result = 1;
 }
+// clinet streaming
 
+message LongGreetRequest {
+    Greeting greeting = 1;
+}
 
+message LongGreetResponse {
+    string result = 1;
+}
 
 service GreetService{
     // Unary
     rpc Greet(GreetRequest) returns (GreetResponse) {};
     // Server Streaming rpc
     rpc GreetManyTimes(GreetManyTimesRequest) returns (stream GreetManyTImesResponse){};
-
+    // client streaming rpc
+    rpc LongGreet(stream LongGreetRequest) returns (LongGreetResponse){};
 }
