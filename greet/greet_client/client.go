@@ -108,6 +108,8 @@ func doClientStreaming(c greetpb.GreetServiceClient) {
 		time.Sleep(time.Second * 1)
 
 	}
-	stream.CloseSend()
+
+	res, err := stream.CloseAndRecv()
+	fmt.Println("longGreet request sent", res)
 
 }
