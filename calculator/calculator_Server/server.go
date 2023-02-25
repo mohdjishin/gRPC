@@ -39,11 +39,24 @@ func (s *server) Calculate(ctx context.Context, req *calc.CalculateRequest) (*ca
 
 	first_num := req.GetCalculating().GetFirstNum()
 	second_num := req.GetCalculating().GetSecondNum()
-
-	result := first_num + second_num
-	res := &calc.CalculateResponse{
-		Result: result,
+	operation := req.GetCalculating().GetOperation()
+	var res interface{}
+	switch operation {
+	case "add":
+		res = first_num + second_num
+	case "sub":
+		res = first_num - second_num
+	case "mul":
+		res = first_num * second_num
+	case "div":
+		res = first_num / second_num
+	default:
+		res = "Invalid Operation"
 	}
-	return res, nil
+
+	result := &calc.CalculateResponse{
+		Result: fmt.Sprintf("%v", res),
+	}
+	return result, nil
 
 }
