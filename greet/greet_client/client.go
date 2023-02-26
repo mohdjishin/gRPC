@@ -162,7 +162,7 @@ func doBiDirStreaming(c greetpb.GreetServiceClient) {
 		stream.CloseSend()
 
 	}()
-	//  we receive a buch of message fromm the client (go routine )
+	//  we receive a buch of message fromm the server (go routine )
 	go func() {
 		// recive to send msg
 		for {
