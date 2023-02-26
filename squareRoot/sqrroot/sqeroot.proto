@@ -1,0 +1,23 @@
+syntax="proto3";
+
+
+package squareroot ;
+option go_package ="./sqrroot";
+
+
+message SquareRootRequest{
+    int64 num=1;
+
+}
+
+message SquareRootResponse{
+
+    double number_root=1;
+
+}
+service CalculateService{
+
+//  this rpc will throw an exeption if the given number is negtive
+//  The errot being send will be type of INVALID_ARGUMENT 
+    rpc SquareRoot(SquareRootRequest) returns(SquareRootResponse){};
+}
