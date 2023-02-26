@@ -149,7 +149,7 @@ func doBiDirStreaming(c greetpb.GreetServiceClient) {
 		return
 	}
 	waitc := make(chan struct{})
-	//  we send a buch of message the client (go routine)
+	//  we send a buch of message to the client (go routine)
 	go func() {
 		// func to send msg
 		for _, req := range request {

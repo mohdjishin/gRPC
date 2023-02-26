@@ -89,7 +89,7 @@ func (s *server) LongGreet(stream greetpb.GreetService_LongGreetServer) error {
 
 }
 
-func (*server) GreateEveryone(stream greetpb.GreetService_GreateEveryoneServer) error {
+func (s *server) GreateEveryone(stream greetpb.GreetService_GreateEveryoneServer) error {
 	fmt.Println("GreetEveryone function invocked with a streaming request")
 	for {
 		req, err := stream.Recv()
@@ -103,12 +103,12 @@ func (*server) GreateEveryone(stream greetpb.GreetService_GreateEveryoneServer) 
 		firstname := req.GetGreeting().GetFirstName()
 
 		result := "Hello " + firstname + "!"
-		err = stream.Send(&greetpb.GreetEveryoneResponse{
+		sendErr := stream.Send(&greetpb.GreetEveryoneResponse{
 
 			Result: result,
 		})
 
-		if err != nil {
+		if sendErr != nil {
 			log.Fatalf("Error while sending data to client %v", err)
 
 		}
