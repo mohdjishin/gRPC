@@ -1,5 +1,4 @@
 #!/bin/bash
-# Inspired from: https://github.com/grpc/grpc-java/tree/master/examples#generating-self-signed-certificates-for-use-with-grpc
 
 # Output files
 # ca.key: Certificate Authority private key file (this shouldn't be shared in real-life)
