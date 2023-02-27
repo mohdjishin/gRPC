@@ -8,6 +8,7 @@ import (
 
 	"github.com/mohdjishin/gRPC/max-val/maxpb"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 type server struct {
@@ -24,6 +25,7 @@ func main() {
 	}
 
 	s := grpc.NewServer()
+	reflection.Register(s)
 
 	maxpb.RegisterMaxServiceServer(s, &server{})
 
@@ -51,7 +53,7 @@ func (s *server) GetMax(stream maxpb.MaxService_GetMaxServer) error {
 		value := req.GetNumber()
 		if max < value {
 			max = value
-
+			fmt.Printf("sending new largest value %v \n", max)
 			result := "new largest value :" + fmt.Sprintf("%s", max)
 			sendErr := stream.Send(&maxpb.GetMaxResponse{
 				Result: result,

@@ -8,6 +8,7 @@ import (
 
 	"github.com/mohdjishin/gRPC/calculator/calc"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 type server struct {
@@ -24,6 +25,7 @@ func main() {
 	}
 
 	s := grpc.NewServer()
+	reflection.Register(s)
 
 	calc.RegisterCalculateServiceServer(s, &server{})
 
