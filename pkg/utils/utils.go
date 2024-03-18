@@ -13,7 +13,6 @@ import (
 )
 
 func decodeP12File(p12Data []byte, password string) (privateKey interface{}, leaf *x509.Certificate, roots *x509.CertPool, err error) {
-
 	privateKey, certificate, ca, err := pkcs12.DecodeChain(p12Data, password)
 	if err != nil {
 		return
@@ -30,6 +29,28 @@ func decodeP12File(p12Data []byte, password string) (privateKey interface{}, lea
 	return
 }
 
+// LoadClientCertificates loads client certificates from a file
+func LoadClientCertificates(certFile string) (*tls.Config, error) {
+	// Read certificate file
+	f, err := os.ReadFile(certFile)
+	if err != nil {
+		return nil, err
+	}
+
+	// Create a certificate pool
+	cpool := x509.NewCertPool()
+	if !cpool.AppendCertsFromPEM(f) {
+		return nil, err
+	}
+
+	// Create a TLS configuration with the certificate pool
+	cert := &tls.Config{
+		RootCAs: cpool,
+	}
+	return cert, nil
+}
+
+// CreateClientCredentials creates client credentials
 func CreateClientCredentials(p12FilePath, password string) (credentials.TransportCredentials, error) {
 	// Load client certificate and key
 	p12Data, err := os.ReadFile(p12FilePath)
@@ -69,7 +90,8 @@ func CreateClientCredentials(p12FilePath, password string) (credentials.Transpor
 	return creds, nil
 }
 
-func LoadTLSCredentials() credentials.TransportCredentials {
+// LoadServerCredentials loads server credentials
+func LoadServerCredentialsWithp12() credentials.TransportCredentials {
 	// Load server certificate and key
 	p12File, err := os.ReadFile("certs/server/server.p12")
 	if err != nil {
@@ -102,6 +124,21 @@ func LoadTLSCredentials() credentials.TransportCredentials {
 	creds := credentials.NewTLS(&tls.Config{
 		Certificates: []tls.Certificate{serverCert},
 		RootCAs:      caCert,
+	})
+
+	return creds
+}
+
+func LoadServerCredentials() credentials.TransportCredentials {
+
+	serverCert, err := tls.LoadX509KeyPair("certs/server/server-cert.pem", "certs/server/server-key.pem")
+	if err != nil {
+		log.Fatalf("Failed to load server certificate and key: %v", err)
+	}
+
+	creds := credentials.NewTLS(&tls.Config{
+		Certificates: []tls.Certificate{serverCert},
+		ClientAuth:   tls.NoClientCert,
 	})
 
 	return creds
