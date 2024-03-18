@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+// Define the package
+package greeter;
+
+// Define the Go package
+option go_package = ".;greeterService";
+// Define the Greeter service
+service Greeter {
+    // Define the SayHello method
+    rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
+
+// Define the HelloRequest message
+message HelloRequest {
+    // Field representing the name
+    string name = 1;
+}
+
+// Define the HelloReply message
+message HelloReply {
+    // Field representing the greeting message
+    string message = 1;
+}
