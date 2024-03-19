@@ -10,9 +10,17 @@ This project demonstrates how to implement secure communication between a gRPC s
 - Go gRPC library
 - OpenSSL (for generating certificates)
 
-## Installation
 
 
+## Generating Certificates
+Before running the server and client, ensure you have generated the required TLS certificates using OpenSSL.
+
+### Generating Certificates with OpenSSL
+- *Run the Certificate Generation Script**: Execute the provided script (`gen.sh`) to generate TLS certificates using OpenSSL. This script will generate certificates and convert them into PKCS#12 format (`.p12` files).
+  ```
+  chmod +x gen.sh
+  ./gen.sh
+  ```
 
 ### Running the Server
 
