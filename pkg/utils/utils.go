@@ -123,7 +123,8 @@ func LoadServerCredentialsWithp12() credentials.TransportCredentials {
 	// Create TLS credentials
 	creds := credentials.NewTLS(&tls.Config{
 		Certificates: []tls.Certificate{serverCert},
-		RootCAs:      caCert,
+		ClientCAs:    caCert,
+		ClientAuth:   tls.RequireAndVerifyClientCert,
 	})
 
 	return creds
