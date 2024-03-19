@@ -16,30 +16,18 @@ This project demonstrates how to implement secure communication between a gRPC s
 
 ### Running the Server
 
-1. Navigate to the `cmd/server` directory:
+-  Run the server application:
 
     ```bash
-    cd cmd/server
-    ```
-
-2. Run the server application:
-
-    ```bash
-    go run main.go
+    go run cmd/server/main.go
     ```
 
 ### Running the Client
 
-1. Navigate to the `cmd/client` directory:
+- Run the client application:
 
     ```bash
-    cd cmd/client
-    ```
-
-2. Run the client application:
-
-    ```bash
-    go run main.go
+    go run cmd/client/main.go
     ```
 
 
