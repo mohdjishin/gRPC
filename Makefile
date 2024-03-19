@@ -18,6 +18,10 @@ clean:
 	@echo "Cleaning generated files..."
 	rm -f $(PROTO_GO_OUT)/*.pb.go
 	@echo "Cleaned generated files"
+	@echo "Cleaning cert files..."
+	rm -f certs/client/*.pem certs/server/*.pem certs/CA/*.pem certs/client/*.p12 certs/server/*.p12
+	@echo "Cleaned cert files"
+
 
 .PHONY: help
 help:
