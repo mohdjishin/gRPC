@@ -27,7 +27,7 @@ Before running the server and client, ensure you have generated the required TLS
 -  Run the server application:
 
     ```bash
-    go run cmd/server/main.go
+    go run cmd/server/main.go   or     go run cmd/server/main.go -mtls
     ```
 
 ### Running the Client
@@ -35,7 +35,7 @@ Before running the server and client, ensure you have generated the required TLS
 - Run the client application:
 
     ```bash
-    go run cmd/client/main.go
+    go run cmd/client/main.go   or      go run cmd/client/main.go -mtls
     ```
 
 
