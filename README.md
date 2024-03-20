@@ -35,7 +35,7 @@ Before running the server and client, ensure you have generated the required TLS
 - Run the client application:
 
     ```bash
-    go run cmd/client/main.go   or      go run cmd/client/main.go -mtls
+    go run cmd/client/main.go   or     go run cmd/client/main.go -mtls
     ```
 
 
